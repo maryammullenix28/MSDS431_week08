@@ -21,7 +21,7 @@ func TestBootstrapCorrelation(t *testing.T) {
 	// Verify the result
 	expected := stat.Correlation(XDrafted, FPTS, nil)
 	for i, r := range result {
-		if math.Abs(r-expected) > 1e-5 { // Adjusted tolerance to 1e-5
+		if math.Abs(r-expected) > 1e-5 {
 			t.Errorf("BootstrapCorrelation result[%d] = %v, expected %v", i, r, expected)
 		}
 	}
