@@ -13,7 +13,7 @@ function_1 <- function(data, i){
 set.seed(1)
 
 timing <- system.time({
-  bootstrap_correlation <- boot(data = mydata, statistic = function_1, R = 10000)
+  bootstrap_correlation <- boot(data = mydata, statistic = function_1, R = 100000)
   
   print(summary(bootstrap_correlation))
   print(class(bootstrap_correlation))

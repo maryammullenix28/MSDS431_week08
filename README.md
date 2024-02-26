@@ -14,11 +14,20 @@ The sampleWithReplacement function randomly selects elements from the input slic
 The bootstrapCorrelation function takes the resampled datasets created by sampleWithReplacement, calculates the correlation coefficient for each resampled dataset, and stores the results in a slice. By repeating this process R times (where R is the number of bootstrap iterations), we obtain R correlation coefficients that represent the variability of the correlation estimate.
 #### Testing
 To make sure the bootstraping is occuring correctly, I created a unit test to assess 'bootstrapCorrelation's ability to calculate accurate correlation values. The code passed the test.
-### Results
-The outputs of the R and GO code are comparable. Given the random resampling process, the results won't be exactly the same. 
+### Results & Recommendations
+The outputs of the R and GO code are comparable after 10000 iterations. Given the random resampling process, the results won't be exactly the same. 
 The R outputs:
 - Range: 0.6839681 0.9929641
 - Mean correlation: 0.8955649
 - St.Dev: 0.04318599
 The Go outputs:
-- 
+- Range: 0.7035759526865184 0.9897836519728416 
+- Mean: 0.8946565705620442
+- St.Dev: 0.04300598711824439
+
+As for timing and performance, at 10000 iterations, the Go program took 0.228 s whereas the R program took 0.384 s. It's worth noting that the Go program did perform faster, despite more code complexity and steps.
+At 100000 iterations, the R program took 4.153 s, a significant increase from 10000 iterations. Go, on the other hand, only increased by 0.02 seconds at 0.249 total run time.
+
+In regards to computing costs, based on Google Cloud's calculator, at 100000 iterations and 50 calls per month, the R program would cost about $2,146.41. Alternatively, running the Go program would cost $146.74. This saves companies $2000 per month. 
+
+Based on this analysis, I would recommend using Go when it requires a large number of trials or when conducting analysis with large-scale datasets due to its efficiency and memory management capabilities. This would save companies money in cloud computing costs, despite the greater time investment in the beginning to research and/or create custom functions/programs to conduct their analyses.
