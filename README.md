@@ -15,11 +15,13 @@ The bootstrapCorrelation function takes the resampled datasets created by sample
 #### Testing
 To make sure the bootstraping is occuring correctly, I created a unit test to assess 'bootstrapCorrelation's ability to calculate accurate correlation values. The code passed the test.
 ### Results & Recommendations
-The outputs of the R and GO code are comparable after 10000 iterations. Given the random resampling process, the results won't be exactly the same. 
+The outputs of the R and GO code are comparable after 10000 iterations. Given the random resampling process, the results won't be exactly the same.
+
 The R outputs:
 - Range: 0.6839681 0.9929641
 - Mean correlation: 0.8955649
 - St.Dev: 0.04318599
+
 The Go outputs:
 - Range: 0.7035759526865184 0.9897836519728416 
 - Mean: 0.8946565705620442
