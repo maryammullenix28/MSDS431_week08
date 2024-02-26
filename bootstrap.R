@@ -1,0 +1,33 @@
+mydata <- read.csv("/Users/maryammullenix/Documents/GitHub/MSDS431_week08/Celtics_Heat_Game_6_Actual.csv")
+
+#install.packages('boot', dep = TRUE)
+#install.packages('pryr')
+library(boot)
+library(pryr)
+
+function_1 <- function(data, i){
+  d2 <- data[i,] 
+  return(cor(d2$X.Drafted, d2$FPTS))
+}
+
+set.seed(1)
+
+timing <- system.time({
+  bootstrap_correlation <- boot(data = mydata, statistic = function_1, R = 10000)
+  
+  print(summary(bootstrap_correlation))
+  print(class(bootstrap_correlation))
+  print(range(bootstrap_correlation$t))
+  print(mean(bootstrap_correlation$t))
+  print(sd(bootstrap_correlation$t))
+  
+  conf <- 0.95
+  
+  print(boot.ci(boot.out = bootstrap_correlation, type = c("norm", "basic", "perc", "bca"), conf = conf))
+})
+
+print("Time taken:")
+print(timing)
+
+print("Memory usage:")
+print(mem_used())
