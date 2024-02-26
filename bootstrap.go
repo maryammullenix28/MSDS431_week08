@@ -69,6 +69,8 @@ func main() {
 	fmt.Println("Bootstrap Correlation:")
 	fmt.Println("Mean:", stat.Mean(bootstrapCorrelation, nil))
 	fmt.Println("Standard Deviation:", stat.StdDev(bootstrapCorrelation, nil))
+	min, max := getRange(bootstrapCorrelation)
+	fmt.Println("Range:", min, max)
 }
 
 func bootstrapCorrelation(XDrafted, FPTS []float64, R int) []float64 {
